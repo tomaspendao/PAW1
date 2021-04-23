@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventosManager</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Eventos</h1>
+    <p>Criar Eventos</p>
+    <form>
+      <div class="form_div">
+        <label for="name">Nome</label>
+        <input id="name" type="text" required>
+      </div>
+      <div class="form_div">
+        <label for="description">Descrição</label>
+        <input id="description" type="text" required>
+      </div>
+      <div class="form_div">
+        <label for="image">Poster Promocional</label>
+        <input id="image" type="file">
+      </div>
+      <div class="form_div">
+        <label for="lotacion">Lotação</label>
+        <input id="lotacion" type="number" required>
+      </div>
+      <div class="form_div">
+        <label for="address">Morada</label>
+        <input id="address" type="text" required>
+      </div>
+      <div class="form_div">
+        <label for="maxLotacion">Limitação de Lotação (%)</label>
+        <input id="maxLotacion" type="number" min="1" max="100" id="myPercent" required/><s>%</s>
+      </div>
+      <div class="form_div">
+        <button id="submit">Submeter</button>
+      </div>
+    </form>
+  </body>
+</html>
