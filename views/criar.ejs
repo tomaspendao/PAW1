@@ -1,0 +1,59 @@
+<!-- Para adicionar Evento-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventosManager</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>Eventos</h1>
+    <p>Criar Eventos</p>
+    <form>
+      <div class="form_div">
+        <label for="name">Nome</label>
+        <input id="name" type="text" required placeholder="Nome" />
+      </div>
+      <div class="form_div">
+        <label for="description">Descrição</label>
+        <input
+          id="description"
+          type="text"
+          required
+          placeholder="descrição do evento"
+          spellcheck="true"
+        />
+      </div>
+      <div class="form_div">
+        <label for="image">Poster Promocional</label>
+        <input id="image" type="file" />
+      </div>
+      <div class="form_div">
+        <label for="lotacion">Lotação</label>
+        <input id="lotacion" type="number" required placeholder="2000"/>
+      </div>
+      <div class="form_div">
+        <label for="address">Morada</label>
+        <input id="address" type="text" required placeholder="Rua do Curral"/>
+      </div>
+      <div class="form_div">
+        <label for="maxLotacion">Limitação de Lotação (%)</label>
+        <input
+          id="maxLotacion"
+          type="number"
+          min="1"
+          max="100"
+          id="myPercent"
+          placeholder="50"
+          maxlength="3"
+          size="3"
+          required
+          pattern="[0-9]"
+        /><s>%</s>
+      </div>
+      <div class="form_div">
+        <button id="submit">Submeter</button>
+      </div>
+    </form>
+  </body>
+</html>
