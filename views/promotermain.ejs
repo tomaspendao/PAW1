@@ -7,12 +7,17 @@
   </head>
   <body>
       <h2><%-title%></h2>
-    <h2>Eventos</h1>
-    <p>Criar Eventos</p>
-    <form method="POST" action="/promoter/criar">
+    <!--<h2>Eventos</h1>-->
+    <!--<p>Criar Eventos</p>-->
+    <form method="POST" action="/promoter/criarLocal">
         <div>
-            <button type="submit">Criar</button>
+            <button type="submit">Criar Local</button>
         </div>
     </form>
+    <form method="POST" action="/promoter/criarEvent">
+      <div>
+        <button type="submit">Criar Evento</button>
+      </div>
+  </form>
   </body>
 </html>

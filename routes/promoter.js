@@ -6,8 +6,14 @@ router.get("/", function (req, res, next) {
 
 });
 
-router.post("/criar", function (req, res, next) {
-    res.render("eventos/criar", { title: 'Promoter' });
+router.post("/criarEvent", function (req, res, next) {
+    res.render("locais/eventos/criar", { title: 'Promoter' });
+    console.log(req.body);
+  });
+
+
+  router.post("/criarLocal", function (req, res, next) {
+    res.render("locais/createLocal", { title: 'Promoter' });
     console.log(req.body);
   });
 
