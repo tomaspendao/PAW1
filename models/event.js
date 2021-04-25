@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-//var locationModel = require("./location");
+var locationModel = require("./location");
 const db = require('../db');
 
 var eventSchema = new mongoose.Schema({
@@ -11,11 +11,7 @@ var eventSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  location:{
-    place: {type: String},
-    max: {type: Number},
-    limit: {type: Number}
-  },
+  location: locationModel.schema,
   /*poster: {
         data: Buffer,
         contentType: String
