@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+const db = require('../db');
  
 var promoterSchema = new mongoose.Schema({
-    name: String,
-    email: String
+    name: {type: String, required: true},
+    email: {type: String, required: true}
     
 });
 
-module.exports = mongoose.model('Promoter', promoterSchema);
+module.exports = db.model('Promoter', promoterSchema);

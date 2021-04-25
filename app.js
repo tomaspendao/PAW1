@@ -8,9 +8,6 @@ var multer = require('multer');
 
 var fs = require('fs');
 
-var mongoose = require('mongoose');
-
-
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 var indexRouter = require('./routes/index');
@@ -20,15 +17,7 @@ var eventRouter = require('./routes/events');
 const { log } = require('console');
 const eventController = require('./controllers/eventController');
 
-mongoose.Promise = global.Promise
-
-mongoose.connect('mongodb://localhost/promoters')
-  .then(()=> console.log(' connected to DB!'))
-  .catch(()=> console.log(' error connecting to DB!'))
-
-mongoose.connect('mongodb://localhost/events')
-  .then(()=> console.log(' connected to DB!'))
-  .catch(()=> console.log(' error connecting to DB!'))  
+ 
 var app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.urlencoded({ extended: false }))
