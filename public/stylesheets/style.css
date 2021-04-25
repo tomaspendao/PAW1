@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: greenyellow;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.Error {
+  color: black;
+  text-align: center;
+}
+
+form label{
+  display: flex;
+}
+
+table {
+  border-width: 5px;
+  border-color: black;
+}
