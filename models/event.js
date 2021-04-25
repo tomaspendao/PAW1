@@ -12,11 +12,11 @@ var eventSchema = new mongoose.Schema({
     required: false,
   },
   location: locationModel.schema,
-  poster: {
+  /*poster: {
     data: Buffer,
     contentType: String,
-  },
-  //poster: String,
+  },*/
+  poster: String,
   //location: locationModel.schema
 });
 
