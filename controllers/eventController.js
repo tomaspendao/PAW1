@@ -30,7 +30,6 @@ eventController.show = function(req, res){
 // criar 1 Event
 eventController.createForm = function (req,res) {
     res.render('event/createEvent');
-    
 }
 
 eventController.create = function(req,res) {
@@ -43,6 +42,7 @@ eventController.create = function(req,res) {
             res.redirect('/');
         }
     })
+    
 }
 
 eventController.editForm = function(req, res) {

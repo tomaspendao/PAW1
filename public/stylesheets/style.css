@@ -13,9 +13,11 @@ a {
   text-align: center;
 }
 
-form label{
+.form_create{
   display: flex;
+  flex-wrap: wrap;
 }
+
 
 table {
   border-width: 5px;

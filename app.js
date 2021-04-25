@@ -13,6 +13,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 var indexRouter = require('./routes/index');
 var promoterRouter = require('./routes/promoters');
 var eventRouter = require('./routes/events');
+var locationRouter = require('./routes/locations');
 
 const { log } = require('console');
 const eventController = require('./controllers/eventController');
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/promoters',promoterRouter);
 app.use('/events',eventRouter);
+app.use('/locations',locationRouter);
 //app.use('/users', usersRouter);
 //app.use('/criar', criarRouter);
 

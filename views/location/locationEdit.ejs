@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Event</title>
+    <title>Location</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <div class="container">
-      <h1>Event Editing</h1>
-      <form action="/events/edit/<%=item._id%>" method="post">
+      <h1>Location Editing</h1>
+      <form action="/locations/edit/<%=item._id%>" method="post">
         <table class="table_details">
           <tbody>
             <tr hidden>
@@ -23,40 +23,16 @@
                 /><%= item.name %>
               </td>
             </tr>
-            <tr>
-              <td>Name</td>
-              <td>:</td>
-              <td>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value="<%= item.name %>"
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>Description</td>
-              <td>:</td>
-              <td>
-                <input
-                  type="text"
-                  name="description"
-                  id="description"
-                  value="<%= item.description %>"
-                />
-              </td>
-            </tr>
+            
             <tr>
               <td>Address</td>
               <td>:</td>
               <td>
                 <input
                   type="text"
-                  name="location.place"
-                  id="location.place"
-                  value="<%= item.location.place %>"
+                  name="place"
+                  id="place"
+                  value="<%= item.place %>"
                 />
               </td>
             </tr>
@@ -67,9 +43,9 @@
               <td>
                 <input
                   type="number"
-                  name="location.max"
-                  id="location.max"
-                  value="<%= item.location.max %>"
+                  name="max"
+                  id="max"
+                  value="<%= item.max %>"
                 />
               </td>
               <tr>
@@ -78,9 +54,9 @@
                 <td>
                   <input
                     type="number"
-                    name="location.limit"
-                    id="location.limit"
-                    value="<%= item.location.limit %>"
+                    name="limit"
+                    id="limit"
+                    value="<%= item.limit %>"
                   />
                 </td>
             </tr>
@@ -91,6 +67,6 @@
         </table>
       </form>
     </div>
-    <h3><a href="/events">Show All Events</a></h3>
+    <h3><a href="/locations">Show All Locations</a></h3>
   </body>
 </html>

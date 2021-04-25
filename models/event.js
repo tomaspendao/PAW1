@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var locationModel = require("./location");
-const db = require('../db');
+const db = require("../db");
 
 var eventSchema = new mongoose.Schema({
   name: {
@@ -12,11 +12,11 @@ var eventSchema = new mongoose.Schema({
     required: false,
   },
   location: locationModel.schema,
-  /*poster: {
-        data: Buffer,
-        contentType: String
-    }*/
-  poster: String,
+  poster: {
+    data: Buffer,
+    contentType: String,
+  },
+  //poster: String,
   //location: locationModel.schema
 });
 
