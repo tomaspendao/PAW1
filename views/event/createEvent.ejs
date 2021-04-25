@@ -11,27 +11,27 @@
     <form action="/events/create" method="POST" >
         <div class="form_create">
             <label>Name: </label>
-            <input name="name" id="name" type="text">
+            <input name="name" id="name" type="text" placeholder="name" required>
         </div>
         <div class="form_create">
             <label>Description: </label>
-            <input name="description" id="description" type="text">
+            <input name="description" id="description" placeholder="...description..." type="text">
         </div>
         <div class="form_create">
             <label>Address: </label>
-            <input name="location.place" id="place" type="text">
+            <input name="location.place" id="place" type="text" placeholder="Rua do Curral" required>
         </div>
         <div class="form_create">
             <label>Capacity: </label>
-            <input name="location.max" id="max" type="number">
+            <input name="location.max" id="max" type="number" placeholder="20000" required>
         </div>
         <div class="form_create">
-            <label>Limi Capacity (%): </label>
-            <input name="location.limit" id="limit" type="number">
+            <label>Limit Capacity (%): </label>
+            <input name="location.limit" id="limit" type="number" placeholder="50%" min=0 max=100 required>
         </div>
         <div class="form_create">
             <label>Poster: </label>
-            <input name="poster" id="poster" type="text">
+            <input name="poster" id="poster" placeholder="image.jpg" type="text">
         </div>
         <div class="form_create">
             <button type="submit">Save</button>

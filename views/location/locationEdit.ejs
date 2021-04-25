@@ -23,7 +23,7 @@
                 /><%= item.name %>
               </td>
             </tr>
-            
+
             <tr>
               <td>Address</td>
               <td>:</td>
@@ -48,17 +48,21 @@
                   value="<%= item.max %>"
                 />
               </td>
-              <tr>
-                <td>Limit Capacity</td>
-                <td>:</td>
-                <td>
-                  <input
-                    type="number"
-                    name="limit"
-                    id="limit"
-                    value="<%= item.limit %>"
-                  />
-                </td>
+            </tr>
+
+            <tr>
+              <td>Limit Capacity</td>
+              <td>:</td>
+              <td>
+                <input
+                  type="number"
+                  name="limit"
+                  id="limit"
+                  min="0"
+                  max="100"
+                  value="<%= item.limit %>"
+                />
+              </td>
             </tr>
             <tr>
               <td colspan="2"><button type="submit">Edit</button></td>
