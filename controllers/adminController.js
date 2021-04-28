@@ -10,6 +10,10 @@ adminController.mainPage = function (req, res) {
   res.render("admin/admin");
 };
 
+/*Event.remove({}, function(err) { 
+  console.log('collection removed') 
+});*/
+
 //SHOW ALL
 //promoter
 adminController.showAllPromoters = function (req, res) {
@@ -25,27 +29,29 @@ adminController.showAllPromoters = function (req, res) {
 };
 //event
 adminController.showAllEvents = function (req, res) {
-    Event.find({}).exec((err, dbitems) => {
-        if(err) {
-            console.log("Erro a ler");
-            res.redirect("/error");
-        } else {
-            console.log(dbitems);
-            res.render("admin/events/eventList", { items: dbitems });
-        }
+  Event.find({})
+    .populate("location")
+    .exec((err, dbitems) => {
+      if (err) {
+        console.log("Erro a ler");
+        res.redirect("/error");
+      } else {
+        console.log(dbitems);
+        res.render("admin/events/eventList", { items: dbitems });
+      }
     });
 };
 //location
 adminController.showAllLocations = function (req, res) {
-    Location.find({}).exec((err, dbitems) => {
-        if(err) {
-            console.log("Erro a ler");
-            res.redirect("/error");
-        } else {
-            console.log(dbitems);
-            res.render("admin/locations/locationList", { items: dbitems });
-        }
-    });
+  Location.find({}).exec((err, dbitems) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      console.log(dbitems);
+      res.render("admin/locations/locationList", { items: dbitems });
+    }
+  });
 };
 //SHOW ONE
 //promoter
@@ -61,7 +67,9 @@ adminController.showPromoter = function (req, res) {
 };
 //event
 adminController.showEvent = function (req, res) {
-    Event.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+  Event.findOne({ _id: req.params.id })
+    .populate("location")
+    .exec((err, dbitem) => {
       if (err) {
         console.log("Erro a ler");
         res.redirect("/error");
@@ -69,18 +77,18 @@ adminController.showEvent = function (req, res) {
         res.render("admin/events/eventDetails", { item: dbitem });
       }
     });
-  };
+};
 //location
 adminController.showLocation = function (req, res) {
-    Location.findOne({ _id: req.params.id }).exec((err, dbitem) => {
-      if (err) {
-        console.log("Erro a ler");
-        res.redirect("/error");
-      } else {
-        res.render("admin/locations/locationDetails", { item: dbitem });
-      }
-    });
-  };
+  Location.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      res.render("admin/locations/locationDetails", { item: dbitem });
+    }
+  });
+};
 // CREATE 1 (FORM)
 //promoter
 adminController.createFormPromoter = function (req, res) {
@@ -89,14 +97,21 @@ adminController.createFormPromoter = function (req, res) {
 };
 //event
 adminController.createFormEvent = function (req, res) {
-    console.log("controller1");
-    res.render("admin/events/createEvent");
-  };
+  Location.find({}).exec((err, dbitems) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      console.log(dbitems);
+      res.render("admin/events/createEvent", { items: dbitems });
+    }
+  });
+};
 //location
 adminController.createFormLocation = function (req, res) {
-    console.log("controller1");
-    res.render("admin/locations/createLocation");
-  };
+  console.log("controller1");
+  res.render("admin/locations/createLocation");
+};
 // CREATE PROMOTER (POST)
 //promoter
 adminController.createPromoter = function (req, res) {
@@ -112,28 +127,28 @@ adminController.createPromoter = function (req, res) {
 };
 //event
 adminController.createEvent = function (req, res) {
-    var event = new Event(req.body);
-    event.save((err) => {
-      if (err) {
-        console.log("Erro a gravar");
-        res.redirect("/error");
-      } else {
-        res.redirect("/admins/events");
-      }
-    });
-  };
+  var event = new Event(req.body);
+  event.save((err) => {
+    if (err) {
+      console.log("Erro a gravar");
+      res.redirect("/error");
+    } else {
+      res.redirect("/admins/events");
+    }
+  });
+};
 //location
 adminController.createLocation = function (req, res) {
-    var location = new Location(req.body);
-    location.save((err) => {
-      if (err) {
-        console.log("Erro a gravar");
-        res.redirect("/error");
-      } else {
-        res.redirect("/admins/locations");
-      }
-    });
-  };
+  var location = new Location(req.body);
+  location.save((err) => {
+    if (err) {
+      console.log("Erro a gravar");
+      res.redirect("/error");
+    } else {
+      res.redirect("/admins/locations");
+    }
+  });
+};
 //EDITAR 1 (FORM)
 //promoter
 adminController.editFormPromoter = function (req, res) {
@@ -148,26 +163,26 @@ adminController.editFormPromoter = function (req, res) {
 };
 //event
 adminController.editFormEvent = function (req, res) {
-    Event.findOne({ _id: req.params.id }).exec((err, dbitem) => {
-      if (err) {
-        console.log("Erro a ler");
-        res.redirect("/error");
-      } else {
-        res.render("admin/events/eventEdit", { item: dbitem });
-      }
-    });
-  };
+  Event.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      res.render("admin/events/eventEdit", { item: dbitem });
+    }
+  });
+};
 //location
 adminController.editFormLocation = function (req, res) {
-    Location.findOne({ _id: req.params.id }).exec((err, dbitem) => {
-      if (err) {
-        console.log("Erro a ler");
-        res.redirect("/error");
-      } else {
-        res.render("admin/locations/locationEdit", { item: dbitem });
-      }
-    });
-  };
+  Location.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      res.render("admin/locations/locationEdit", { item: dbitem });
+    }
+  });
+};
 // EDITAR 1 (POST)
 //promoter
 adminController.editPromoter = function (req, res) {
@@ -182,32 +197,33 @@ adminController.editPromoter = function (req, res) {
 };
 //event
 adminController.editEvent = function (req, res) {
-    Event.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
-      if (err) {
-        console.log("Erro a gravar");
-        res.redirect("/error");
-      } else {
-        res.redirect("/admins/events/show/" + req.body._id);
-      }
-    });
-  };
+  Event.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
+    if (err) {
+      console.log("Erro a gravar");
+      res.redirect("/error");
+    } else {
+      res.redirect("/admins/events/show/" + req.body._id);
+    }
+  });
+};
 //location
 adminController.editLocation = function (req, res) {
-    Location.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
-      if (err) {
-        console.log("Erro a gravar");
-        res.redirect("/error");
-      } else {
-        res.redirect("/admins/locations/show/" + req.body._id);
-      }
-    });
-  };
+  Location.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
+    if (err) {
+      console.log("Erro a gravar");
+      res.redirect("/error");
+    } else {
+      res.redirect("/admins/locations/show/" + req.body._id);
+    }
+  });
+};
 // DELETE 1
 //promoter
 adminController.deletePromoter = function (req, res) {
   Promoter.remove({ _id: req.params.id }).exec((err) => {
     if (err) {
       console.log("Erro a ler");
+      res.redirect("/error");
     } else {
       res.redirect("/admins/promoters");
     }
@@ -215,23 +231,37 @@ adminController.deletePromoter = function (req, res) {
 };
 //event
 adminController.deleteEvent = function (req, res) {
-    Event.remove({ _id: req.params.id }).exec((err) => {
-      if (err) {
-        console.log("Erro a ler");
-      } else {
-        res.redirect("/admins/events");
-      }
-    });
-  };
+  Event.remove({ _id: req.params.id }).exec((err) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      res.redirect("/admins/events");
+    }
+  });
+};
 //location
-adminController.deleteLocation = function (req, res) {
-    Location.remove({ _id: req.params.id }).exec((err) => {
-      if (err) {
-        console.log("Erro a ler");
-      } else {
-        res.redirect("/admins/locations");
-      }
-    });
-  };
+adminController.deleteLocation = async function (req, res) {
+  try {
+    const result = await Event.find({ location: req.params.id });
+
+    if (result.length > 0) {
+      //res.redirect("/index/error/409");
+      res.status(409).json({ message: "409" });
+    } else {
+      Location.remove({ _id: req.params.id }).exec((err) => {
+        if (err) {
+          console.log("Erro a ler");
+          res.redirect("/error");
+        } else {
+          res.redirect("/locations");
+        }
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 module.exports = adminController;

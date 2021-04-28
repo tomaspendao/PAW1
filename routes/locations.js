@@ -10,6 +10,4 @@ router.get("/show/:id", locationController.show);
 //router.get("/edit/:id", locationController.editForm);
 //router.get("/delete/:id", locationController.delete);
 
-router.get("/back", locationController.back); //para todos
-
 module.exports = router;

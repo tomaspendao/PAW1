@@ -1,22 +1,23 @@
 var mongoose = require("mongoose");
 var Event = require("../models/event");
+var Location = require("../models/location");
 
 var eventController = {};
 
 eventController.showAll = function (req, res) {
-  Event.find({}).exec((err, dbitems) => {
+  Event.find({}).populate('location').exec((err, dbitems) => {
     if (err) {
       console.log("Erro a ler");
       res.redirect("/error");
     } else {
       console.log(dbitems);
-      res.render("event/eventList", { items: dbitems });
+      res.render("event/eventList", { items: dbitems });  
     }
   });
 };
 
 eventController.show = function (req, res) {
-  Event.findOne({ _id: req.params.id }).exec((err, dbitem) => {
+  Event.findOne({ _id: req.params.id }).populate('location').exec((err, dbitem) => {
     if (err) {
       console.log("Erro a ler");
       res.redirect("/error");
@@ -28,7 +29,15 @@ eventController.show = function (req, res) {
 
 // criar 1 Event
 eventController.createForm = function (req, res) {
-  res.render("event/createEvent");
+  Location.find({}).exec((err, dbitems) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      console.log(dbitems);
+      res.render("event/createEvent", { items: dbitems });
+    }
+  });
 };
 
 eventController.create = function (req, res) {
