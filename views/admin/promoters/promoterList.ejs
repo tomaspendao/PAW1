@@ -28,9 +28,9 @@
                 <td hidden> <%=items[i]._id%></a></td>
                 <td> <%= items[i].name%></a></td>
                 <td hidden> <%= items[i].email%></a></td>
-                <td><a href="/promoters/show/<%= items[i]._id%> "> Show Details </td>
-                <!--<td><a href="/promoters/edit/<%= items[i]._id%> "> Edit </a></td>-->
-                <!--<td><a href="/promoters/delete/<%= items[i]._id%> "> Delete </a></td>-->
+                <td><a href="/admins/promoters/show/<%= items[i]._id%> "> Show Details </td>
+                <td><a href="/admins/promoters/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a href="/admins/promoters/delete/<%= items[i]._id%> "> Delete </a></td>
               </tr>
             <% } %>
           </tbody>
@@ -39,9 +39,9 @@
         <div>No Promoters.</div>
       <% } %>
     </div>
-    <!--<h3><a href="/promoters/create">Create new Promoter</a></h3>-->
-    <!--<h3><a href="/events/create">Create new Event</a></h3>-->
-    <!--<h3><a href="/locations/create">Create new Location</a></h3>-->
-    <button><a href="/locations/back"> Back </a></button>
+    <h3><a href="/admins/promoters/create">Create new Promoter</a></h3>
+    <h3><a href="/admins/events/create">Create new Event</a></h3>
+    <h3><a href="/admins/locations/create">Create new Location</a></h3>
+    <button><a href="/admins"> Back </a></button>
   </body>
 </html>

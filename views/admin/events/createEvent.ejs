@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Create Event</title>
+</head>
+<body>
+    <form action="/admins/events/create" method="POST" >
+        <div class="form_create">
+            <label>Name: </label>
+            <input name="name" id="name" type="text" placeholder="name" required>
+        </div>
+        <div class="form_create">
+            <label>Description: </label>
+            <input name="description" id="description" placeholder="...description..." type="text">
+        </div>
+        <div class="form_create">
+            <label>Address: </label>
+            <input name="location.place" id="place" type="text" placeholder="Rua do Curral" required>
+        </div>
+        <div class="form_create">
+            <label>Capacity: </label>
+            <input name="location.max" id="max" type="number" placeholder="20000" required>
+        </div>
+        <div class="form_create">
+            <label>Limit Capacity (%): </label>
+            <input name="location.limit" id="limit" type="number" placeholder="50%" min=0 max=100 required>
+        </div>
+        <div class="form_create">
+            <label>Poster: </label>
+            <input name="poster" id="poster" placeholder="image.jpg" type="text">
+        </div>
+        <div class="form_create">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</body>
+</html>
