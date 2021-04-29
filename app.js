@@ -14,6 +14,7 @@ var indexRouter = require("./routes/index");
 var promoterRouter = require("./routes/promoters");
 var eventRouter = require("./routes/events");
 var locationRouter = require("./routes/locations");
+var adminRouter = require("./routes/admins");
 
 const { log } = require("console");
 const eventController = require("./controllers/eventController");
@@ -37,6 +38,7 @@ app.use("/", indexRouter);
 app.use("/promoters", promoterRouter);
 app.use("/events", eventRouter);
 app.use("/locations", locationRouter);
+app.use("/admins", adminRouter);
 //app.use('/users', usersRouter);
 //app.use('/criar', criarRouter);
 

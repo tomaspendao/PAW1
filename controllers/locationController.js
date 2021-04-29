@@ -75,8 +75,4 @@ locationController.delete = function (req, res) {
   });
 };
 
-locationController.back = function (req, res) {
-  res.render("index");
-};
-
 module.exports = locationController;

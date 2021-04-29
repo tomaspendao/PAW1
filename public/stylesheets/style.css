@@ -40,5 +40,6 @@ a {
   align-content: left;
   flex-direction: column;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }

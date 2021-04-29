@@ -11,13 +11,12 @@ var eventSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  location: locationModel.schema,
-  /*poster: {
-    data: Buffer,
-    contentType: String,
-  },*/
+  location: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Location",
+    required: true
+  },
   poster: String,
-  //location: locationModel.schema
 });
 
 module.exports = db.model("Event", eventSchema);
