@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Events</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/eventStyle.css' />
   </head>
   <body>
     <div class="container">
@@ -16,7 +16,7 @@
               <th>Event Name</th>
               <th>Description</th>
               <th>Address</th>
-              <th >Max Capacity</th>
+              <th>Max Capacity</th>
               <th>Limit Capacity</th>
               <th hidden>Detalhes</th>
               <th hidden>Editar</th>
@@ -35,9 +35,9 @@
                 <td> <%= items[i].location.place%></a></td>
                 <td > <%= items[i].location.max%></a></td>
                 <td> <%= items[i].location.limit%>%</a></td>
-                <td><a href="/events/show/<%= items[i]._id%> "> Show Details </td>
-                <td><a href="/events/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/events/delete/<%= items[i]._id%> "> Delete </a></td>
+                <td><a href="/events/show/<%= items[i]._id%> " style="text-decoration: none;"> Show Details </td>
+                <td><a href="/events/edit/<%= items[i]._id%> " style="text-decoration: none;"> Edit </a></td>
+                <td><a href="/events/delete/<%= items[i]._id%> " style="text-decoration: none;"> Delete </a></td>
                 <td>Inscrever...(toDo)</td>
               </tr>
               
@@ -49,7 +49,7 @@
       <% } %>
     </div>
     <div>
-      <button><a href="/locations/back"> Back </a></button>
+      <button><a href="/locations/back" style="text-decoration: none;"> Back </a></button>
   </div>
     <!--<h3><a href="/events/create">Create new Event</a></h3> Comentei porque so se deve poder adicionar eventos os promotores acho eu-->
   </body>

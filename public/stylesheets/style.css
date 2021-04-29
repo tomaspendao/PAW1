@@ -1,11 +1,29 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: deeppink;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+label{
+  margin-right: auto;
+  margin-top: auto;
+  color: black;
+  white-space: nowrap;
+}
+
+form{
+  margin-top: 20%;
+}
+
+h1{
+  margin-inline: 40px;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 25px;
 }
 
 a {
-  color: #00B7FF;
+  color: black;
 }
 
 .Error {
@@ -14,12 +32,13 @@ a {
 }
 
 .form_create{
+  margin: auto;
+  margin-bottom: 10px;
+  padding: auto;
+  width: fit-content;
+  justify-content: center;
+  align-content: left;
+  flex-direction: column;
   display: flex;
   flex-wrap: wrap;
-}
-
-
-table {
-  border-width: 5px;
-  border-color: black;
 }
