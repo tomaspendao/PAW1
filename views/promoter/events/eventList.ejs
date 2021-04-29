@@ -16,8 +16,8 @@
               <th>Event Name</th>
               <th>Description</th>
               <th>Address</th>
-              <th hidden>Max Capacity</th>
-              <th hidden>Limit Capacity (%)</th>
+              <th>Max Capacity</th>
+              <th>Limit Capacity (%)</th>
               <th>Limited Capacity</th>
               <th hidden>Detalhes</th>
               <th hidden>Editar</th>
@@ -34,13 +34,12 @@
                 <td> <%= items[i].name%></a></td>
                 <td> <%= items[i].description%></a></td>
                 <td> <%= items[i].location.place%></a></td>
-                <td hidden> <%= items[i].location.max%></a></td>
-                <td hidden> <%= items[i].location.limit%>%</a></td>
+                <td > <%= items[i].location.max%></a></td>
+                <td> <%= items[i].location.limit%>%</a></td>
                 <td><%= (items[i].location.max * items[i].location.limit)/100 %></td>
-                <td><a href="/events/show/<%= items[i]._id%> "> Show Details </td>
-                <!--<td><a href="/events/edit/<%= items[i]._id%> "> Edit </a></td>-->
-                <!--<td><a href="/events/delete/<%= items[i]._id%> "> Delete </a></td>-->
-                <td>Inscrever...(toDo)</td>
+                <td><a href="/promoters/events/show/<%= items[i]._id%> "> Show Details </td>
+                <td><a href="/promoters/events/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a href="/promoters/events/delete/<%= items[i]._id%> "> Delete </a></td>
               </tr>
               
             <% } %>
@@ -50,9 +49,7 @@
         <div>No Events found.</div>
       <% } %>
     </div>
-    <div>
-      <button><a href="/"> Back </a></button>
-  </div>
+    <h3><a href="/promoters/events/create">Create new Event</a></h3>
     <!--<h3><a href="/events/create">Create new Event</a></h3> Comentei porque so se deve poder adicionar eventos os promotores acho eu-->
   </body>
 </html>

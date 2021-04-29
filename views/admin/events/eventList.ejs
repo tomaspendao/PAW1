@@ -16,8 +16,9 @@
               <th>Event Name</th>
               <th>Description</th>
               <th>Address</th>
-              <th >Max Capacity</th>
-              <th>Limit Capacity</th>
+              <th>Max Capacity</th>
+              <th>Limit Capacity (%)</th>
+              <th>Limited Capacity</th>
               <th hidden>Detalhes</th>
               <th hidden>Editar</th>
               <th hidden>Eliminar</th>
@@ -35,6 +36,7 @@
                 <td> <%= items[i].location.place%></a></td>
                 <td > <%= items[i].location.max%></a></td>
                 <td> <%= items[i].location.limit%>%</a></td>
+                <td><%= (items[i].location.max * items[i].location.limit)/100 %></td>
                 <td><a href="/admins/events/show/<%= items[i]._id%> "> Show Details </td>
                 <td><a href="/admins/events/edit/<%= items[i]._id%> "> Edit </a></td>
                 <td><a href="/admins/events/delete/<%= items[i]._id%> "> Delete </a></td>

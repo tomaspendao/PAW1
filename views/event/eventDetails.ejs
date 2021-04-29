@@ -34,10 +34,15 @@
             <td>:</td>
             <td><%= item.location.max %></td>
           </tr>
-          <tr>
-            <td>Limit Capacity</td>
+          <tr hidden>
+            <td>Limit Capacity (%)</td>
             <td>:</td>
             <td><%= item.location.limit %></td>
+          </tr>
+          <tr>
+            <td>Limited Capacity</td>
+            <td>:</td>
+            <td><%= (item.location.max * item.location.limit)/100 %></td>
           </tr>
           <tr>
             <td>Poster</td>

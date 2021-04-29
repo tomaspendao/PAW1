@@ -20,10 +20,15 @@
             <td>:</td>
             <td><%= item.max %></td>
           </tr>
-          <tr>
-            <td>Limit Capacity</td>
+          <tr hidden>
+            <td>Limit Capacity (%)</td>
             <td>:</td>
             <td><%= item.limit %></td>
+          </tr>
+          <tr>
+            <td>Limited Capacity</td>
+            <td>:</td>
+            <td><%= (item.max * item.limit)/100 %></td>
           </tr>
         </tbody>
       </table>
