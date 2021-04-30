@@ -10,7 +10,8 @@ adminController.mainPage = function (req, res) {
   res.render("admin/admin");
 };
 
-/*Event.remove({}, function(err) { 
+/*
+Event.remove({}, function(err) { 
   console.log('collection removed') 
 });*/
 

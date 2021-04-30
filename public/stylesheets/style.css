@@ -1,26 +1,40 @@
 body {
-  padding: 50px;
+  margin: 5%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: whitesmoke;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.Error {
-  color: black;
+  background-color: lightgray;
   text-align: center;
 }
 
-.form_create{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+h1{
+  margin-inline: 40px;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 25px;
+  color: black;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-table {
-  border-width: 5px;
-  border-color: black;
+.Error {
+  color: red;
+  text-align: center;
+}
+
+button{
+  margin-top: 10px;
+}
+
+.form_create{
+  margin: auto;
+  margin-bottom: 10px;
+  padding: auto;
+  width: fit-content;
+  justify-content: center;
+  align-content: left;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
 }

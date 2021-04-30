@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Promoters</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/listStyle.css' />
   </head>
   <body>
     <div class="container">
@@ -15,9 +15,9 @@
               <th hidden>Id</th>
               <th>Name</th>
               <th hidden>E-mail</th>
+              <!--<th></th>
               <th></th>
-              <th></th>
-              <th></th>
+              <th></th>-->
             </tr>
           </thead>
           <tbody>
@@ -28,7 +28,7 @@
                 <td hidden> <%=items[i]._id%></a></td>
                 <td> <%= items[i].name%></a></td>
                 <td hidden> <%= items[i].email%></a></td>
-                <td><a href="/promoters/show/<%= items[i]._id%> "> Show Details </td>
+                <td><a class="showDetail" href="/promoters/show/<%= items[i]._id%> "> Show Details </td>
                 <!--<td><a href="/promoters/edit/<%= items[i]._id%> "> Edit </a></td>-->
                 <!--<td><a href="/promoters/delete/<%= items[i]._id%> "> Delete </a></td>-->
               </tr>

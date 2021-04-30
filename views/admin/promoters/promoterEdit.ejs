@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Promoter Edit</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/editStyle.css' />
   </head>
   <body>
     <div class="container">
@@ -28,13 +28,13 @@
               <td><input type="email" name="email" id="email" value="<%= item.email %>"></td>
             </tr>
             <tr>
-              <td colspan="2"><button type="submit">Edit</button></td>
+              <td id="button" colspan="3"><button type="submit">Edit</button></td>
             </tr>
           </tbody>
         </table>
     </form>
     </div>
-    <h3><a href="/admins/promoters">Show All Promoters</a></h3>
+    <h3><a class="show" href="/admins/promoters">Show All Promoters</a></h3>
   </body>
 </html>
 

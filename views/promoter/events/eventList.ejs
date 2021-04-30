@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Events</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/listStyle.css' />
   </head>
   <body>
     <div class="container">
@@ -37,9 +37,9 @@
                 <td > <%= items[i].location.max%></a></td>
                 <td> <%= items[i].location.limit%>%</a></td>
                 <td><%= (items[i].location.max * items[i].location.limit)/100 %></td>
-                <td><a href="/promoters/events/show/<%= items[i]._id%> "> Show Details </td>
-                <td><a href="/promoters/events/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/promoters/events/delete/<%= items[i]._id%> "> Delete </a></td>
+                <td><a class="showDetail" href="/promoters/events/show/<%= items[i]._id%> "> Show Details </td>
+                <td><a class="edit" href="/promoters/events/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a class="delete" href="/promoters/events/delete/<%= items[i]._id%> "> Delete </a></td>
               </tr>
               
             <% } %>

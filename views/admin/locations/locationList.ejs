@@ -2,10 +2,11 @@
 <html>
   <head>
     <title>Locations</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/listStyle.css' />
   </head>
   <body>
     <div class="container">
+      <h3><a href="/admins/locations/create">Create new Location</a></h3><br>
       <h1>Locations List</h1>
       <% if(items.length>0) { %>
         <table class="table_details">
@@ -33,9 +34,9 @@
                 <td > <%= items[i].max%></a></td>
                 <td> <%= items[i].limit%>%</a></td>
                 <td><%= (items[i].max * items[i].limit)/100 %></td>
-                <td><a href="/admins/locations/show/<%= items[i]._id%> "> Show Details </td>
-                <td><a href="/admins/locations/edit/<%= items[i]._id%> "> Edit </a></td>
-                <td><a href="/admins/locations/delete/<%= items[i]._id%> "> Delete </a></td>
+                <td><a class="showDetail" href="/admins/locations/show/<%= items[i]._id%> "> Show Details </td>
+                <td><a class="edit" href="/admins/locations/edit/<%= items[i]._id%> "> Edit </a></td>
+                <td><a class="delete" href="/admins/locations/delete/<%= items[i]._id%> "> Delete </a></td>
             <% } %>
           </tbody>
         </table>
@@ -44,7 +45,6 @@
         <div>No Locations found.</div>
       <% } %>
     </div>
-    <h3><a href="/admins/locations/create">Create new Location</a></h3>
     <div>
         <button><a href="/admins"> Back </a></button>
     </div>
