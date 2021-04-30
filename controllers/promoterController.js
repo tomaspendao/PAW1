@@ -54,17 +54,21 @@ promoterController.logForm = function (req, res) {
 
 promoterController.log = function (req, res) {
   let e_mail = req.body.email;
-  Promoter.findOne({ email: e_mail }).exec((err, dbitem) => {
-    if (err || dbitem == null) {
-      console.log("Erro a ler");
-      res.redirect("/error");
-    } else if (dbitem.email == e_mail) {
-      if (dbitem.password == req.body.password) {
-        console.log("Correct");
-        res.redirect("/promoters/events");
+  if (e_mail == "admin" && req.body.password == "admin") {
+    res.redirect("/admins");
+  } else {
+    Promoter.findOne({ email: e_mail }).exec((err, dbitem) => {
+      if (err || dbitem == null) {
+        console.log("Erro a ler");
+        res.redirect("/error");
+      } else if (dbitem.email == e_mail) {
+        if (dbitem.password == req.body.password) {
+          console.log("Correct");
+          res.redirect("/promoters/events");
+        }
       }
-    }
-  });
+    });
+  };
 };
 
 promoterController.editForm = function (req, res) {
@@ -126,7 +130,6 @@ promoterController.showEvent = function (req, res) {
       }
     });
 };
-
 
 promoterController.createFormEvent = function (req, res) {
   Location.find({}).exec((err, dbitems) => {
