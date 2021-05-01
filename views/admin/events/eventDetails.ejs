@@ -42,7 +42,7 @@
           <tr>
             <td>Limited Capacity</td>
             <td>:</td>
-            <td><%= (item.location.max * item.location.limit)/100 %></td>
+            <td><%= Math.floor((item.location.max * item.location.limit)/100) %></td>
           </tr>
           <tr>
             <td>Poster</td>

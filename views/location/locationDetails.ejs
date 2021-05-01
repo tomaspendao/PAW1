@@ -28,7 +28,7 @@
           <tr>
             <td>Limited Capacity</td>
             <td>:</td>
-            <td><%= (item.max * item.limit)/100 %></td>
+            <td><%= Math.floor((item.max * item.limit)/100) %></td>
           </tr>
         </tbody>
       </table>

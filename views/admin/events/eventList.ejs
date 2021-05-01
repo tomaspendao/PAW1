@@ -20,6 +20,7 @@
               <th>Max Capacity</th>
               <th>Limit Capacity (%)</th>
               <th>Limited Capacity</th>
+              <th></th>
               <th hidden>Detalhes</th>
               <th hidden>Editar</th>
               <th hidden>Eliminar</th>
@@ -37,7 +38,8 @@
                 <td> <%= items[i].location.place%></a></td>
                 <td > <%= items[i].location.max%></a></td>
                 <td> <%= items[i].location.limit%>%</a></td>
-                <td><%= (items[i].location.max * items[i].location.limit)/100 %></td>
+                <td><%= Math.floor((items[i].location.max * items[i].location.limit)/100) %></td>
+                <td class="posterShow showDetail" href="#">Poster<img src="<%= items[i].poster%>" /></td>
                 <td><a class="showDetail" href="/admins/events/show/<%= items[i]._id%> "> Show Details </td>
                 <td><a class="edit" href="/admins/events/edit/<%= items[i]._id%> "> Edit </a></td>
                 <td><a class="delete" href="/admins/events/delete/<%= items[i]._id%> "> Delete </a></td>
