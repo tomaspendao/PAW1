@@ -127,17 +127,32 @@ adminController.createPromoter = function (req, res) {
   });
 };
 //event
-adminController.createEvent = function (req, res) {
-  var event = new Event(req.body);
-  event.save((err) => {
-    if (err) {
-      console.log("Erro a gravar");
-      res.redirect("/error");
-    } else {
-      res.redirect("/admins/events");
-    }
-  });
+//===================================
+//NEW STARTS
+//===================================
+adminController.createEvent = function (req, res, next) {
+  const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+  Event.create(
+    {
+      name: req.body.name,
+      description: req.body.description,
+      location: req.body.location,
+      poster: url
+    },
+    (err) => {
+			if (err) {
+				console.log(err);
+				next(err);
+			} else {
+        res.redirect("/promoters/events");
+			}
+		}
+  );
 };
+//===================================
+//NEW ENDS
+//===================================
+
 //location
 adminController.createLocation = function (req, res) {
   var location = new Location(req.body);
@@ -197,16 +212,46 @@ adminController.editPromoter = function (req, res) {
   });
 };
 //event
-adminController.editEvent = function (req, res) {
-  Event.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
-    if (err) {
-      console.log("Erro a gravar");
-      res.redirect("/error");
-    } else {
-      res.redirect("/admins/events/show/" + req.body._id);
-    }
-  });
+
+//===================================
+//NEW STARTS
+//===================================
+adminController.editEvent = function (req, res, next) {
+  if(typeof req.file !== 'undefined'){
+    const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+    
+    Event.findByIdAndUpdate(req.body._id, {
+      name: req.body.name,
+      description: req.body.description,
+      poster: url
+    },
+    (err) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        res.redirect("/promoters/events/show/" + req.body._id);
+      }
+    });
+  } else {
+    Event.findByIdAndUpdate(req.body._id, {
+      name: req.body.name,
+      description: req.body.description
+    },
+    (err) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        res.redirect("/promoters/events/show/" + req.body._id);
+      }
+    });
+  }
 };
+//===================================
+//NEW STARTS
+//===================================
+
 //location
 adminController.editLocation = function (req, res) {
   Location.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
@@ -263,5 +308,13 @@ adminController.deleteLocation = async function (req, res) {
     console.log(error);
   }
 };
+
+//===================================
+//NEW STARTS
+//===================================
+adminController.uploadFile = (req, res, next) => {};
+//===================================
+//NEW ENDS
+//===================================
 
 module.exports = adminController;

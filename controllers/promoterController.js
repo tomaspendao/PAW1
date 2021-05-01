@@ -68,7 +68,7 @@ promoterController.log = function (req, res) {
         }
       }
     });
-  }
+  };
 };
 
 promoterController.editForm = function (req, res) {
@@ -143,17 +143,31 @@ promoterController.createFormEvent = function (req, res) {
   });
 };
 
-promoterController.createEvent = function (req, res) {
-  var event = new Event(req.body);
-  event.save((err) => {
-    if (err) {
-      console.log("Erro a gravar");
-      res.redirect("/error");
-    } else {
-      res.redirect("/promoters/events");
-    }
-  });
+//===================================
+//NEW STARTS
+//===================================
+promoterController.createEvent = function (req, res, next) {
+  const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+  Event.create(
+    {
+      name: req.body.name,
+      description: req.body.description,
+      location: req.body.location,
+      poster: url
+    },
+    (err) => {
+			if (err) {
+				console.log(err);
+				next(err);
+			} else {
+        res.redirect("/promoters/events");
+			}
+		}
+  );
 };
+//===================================
+//NEW ENDS
+//===================================
 
 promoterController.editFormEvent = function (req, res) {
   Event.findOne({ _id: req.params.id }).exec((err, dbitem) => {
@@ -166,16 +180,44 @@ promoterController.editFormEvent = function (req, res) {
   });
 };
 
-promoterController.editEvent = function (req, res) {
-  Event.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
-    if (err) {
-      console.log("Erro a gravar");
-      res.redirect("/error");
-    } else {
-      res.redirect("/promoters/events/show/" + req.body._id);
-    }
-  });
+//===================================
+//NEW STARTS
+//===================================
+promoterController.editEvent = function (req, res, next) {
+  if(typeof req.file !== 'undefined'){
+    const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+    
+    Event.findByIdAndUpdate(req.body._id, {
+      name: req.body.name,
+      description: req.body.description,
+      poster: url
+    },
+    (err) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        res.redirect("/promoters/events/show/" + req.body._id);
+      }
+    });
+  } else {
+    Event.findByIdAndUpdate(req.body._id, {
+      name: req.body.name,
+      description: req.body.description
+    },
+    (err) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        res.redirect("/promoters/events/show/" + req.body._id);
+      }
+    });
+  }
 };
+//===================================
+//NEW ENDS
+//===================================
 
 promoterController.deleteEvent = function (req, res) {
   Event.remove({ _id: req.params.id }).exec((err) => {
@@ -187,5 +229,13 @@ promoterController.deleteEvent = function (req, res) {
     }
   });
 };
+
+//===================================
+//NEW STARTS
+//===================================
+promoterController.uploadFile = (req, res, next) => {};
+//===================================
+//NEW ENDS
+//===================================
 
 module.exports = promoterController;

@@ -1,6 +1,14 @@
 var express = require("express");
 var router = express.Router();
 var adminController = require("../controllers/adminController");
+//===================================
+//NEW STARTS
+//===================================
+let multer = require('multer');
+let DIR = './uploads/';
+//===================================
+//NEW ENDS
+//===================================
 
 router.get("/", adminController.mainPage);
 
@@ -23,10 +31,50 @@ router.get("/events", adminController.showAllEvents);
 router.get("/events/show/:id", adminController.showEvent);
 
 router.get("/events/create", adminController.createFormEvent);
-router.post("/events/create", adminController.createEvent);
+
+//===================================
+//NEW STARTS
+//===================================
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, DIR);
+	},
+	filename: (req, file, cb) => {
+		const fileName = file.originalname.toLowerCase().split(' ').join('-');
+		cb(null, fileName);
+	},
+});
+var upload = multer({
+	storage: storage,
+	// limits: {
+	//   fileSize: 1024 * 1024 * 5
+	// },
+	fileFilter: (req, file, cb) => {
+		if (
+			file.mimetype == 'image/png' ||
+			file.mimetype == 'image/jpg' ||
+			file.mimetype == 'image/jpeg'
+		) {
+			cb(null, true);
+		} else {
+			cb(null, false);
+			return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+		}
+	},
+});
+router.post('/events/create', upload.single('poster'), (req, res, next) => {
+    console.log(req.file);
+	adminController.createEvent(req, res, next);
+});
 
 router.post("/events/edit/:id", adminController.editEvent);
-router.get("/events/edit/:id", adminController.editFormEvent);
+router.post('/events/edit/:id', upload.single('poster'), (req, res, next) => {
+    console.log(req.file);
+	adminController.editEvent(req, res, next);
+});
+//===================================
+//NEW ENDS
+//===================================
 
 router.get("/events/delete/:id", adminController.deleteEvent);
 

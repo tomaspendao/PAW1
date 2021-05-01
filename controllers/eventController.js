@@ -5,30 +5,26 @@ var Location = require("../models/location");
 var eventController = {};
 
 eventController.showAll = function (req, res) {
-  Event.find({})
-    .populate("location")
-    .exec((err, dbitems) => {
-      if (err) {
-        console.log("Erro a ler");
-        res.redirect("/error");
-      } else {
-        console.log(dbitems);
-        res.render("event/eventList", { items: dbitems });
-      }
-    });
+  Event.find({}).populate('location').exec((err, dbitems) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      console.log(dbitems);
+      res.render("event/eventList", { items: dbitems });  
+    }
+  });
 };
 
 eventController.show = function (req, res) {
-  Event.findOne({ _id: req.params.id })
-    .populate("location")
-    .exec((err, dbitem) => {
-      if (err) {
-        console.log("Erro a ler");
-        res.redirect("/error");
-      } else {
-        res.render("event/eventDetails", { item: dbitem });
-      }
-    });
+  Event.findOne({ _id: req.params.id }).populate('location').exec((err, dbitem) => {
+    if (err) {
+      console.log("Erro a ler");
+      res.redirect("/error");
+    } else {
+      res.render("event/eventDetails", { item: dbitem });
+    }
+  });
 };
 
 // criar 1 Event

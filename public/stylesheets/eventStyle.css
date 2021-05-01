@@ -1,18 +1,12 @@
 body{
-    margin: 5%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     text-align: center;
     background-color: lightgrey;
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
 th, td{
     width: 20px;
-    text-align: left;
+    text-align: center;
     padding-inline: 20px;
 }
 
@@ -25,14 +19,4 @@ th, td{
     display: block;
     flex-direction: column;
     flex-wrap: nowrap;
-}
-
-.edit {
-    color: green;
-    text-decoration: none;
-}
-
-.show{
-    color: orangered;
-    text-decoration: none;
 }
