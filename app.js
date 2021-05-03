@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var fs = require("fs");
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
+//rotas para acesso!
 var indexRouter = require("./routes/index");
 var promoterRouter = require("./routes/promoters");
 var eventRouter = require("./routes/events");
@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // view engine setup
+//pasta views
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -31,7 +32,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//pasta public
 app.use(express.static(path.join(__dirname, "public")));
+//pasta uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/", indexRouter);

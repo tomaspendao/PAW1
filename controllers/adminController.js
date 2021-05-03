@@ -1,3 +1,7 @@
+/**
+ * Controller dos admins que podem criar/editar/remover eventos/localizações/promotores
+ */
+
 var mongoose = require("mongoose");
 var Promoter = require("../models/promoter");
 var Event = require("../models/event");
@@ -5,6 +9,7 @@ var Location = require("../models/location");
 
 var adminController = {};
 
+//criar a main page do admin
 adminController.mainPage = function (req, res) {
   console.log("controller1");
   res.render("admin/admin");
@@ -90,7 +95,7 @@ adminController.showLocation = function (req, res) {
     }
   });
 };
-// CREATE 1 (FORM)
+// CREATE 1 (FORM GET)
 //promoter
 adminController.createFormPromoter = function (req, res) {
   console.log("controller1");
@@ -127,31 +132,27 @@ adminController.createPromoter = function (req, res) {
   });
 };
 //event
-//===================================
-//NEW STARTS
-//===================================
 adminController.createEvent = function (req, res, next) {
-  const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+  //obter path do uploads
+  const url =
+    req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
   Event.create(
     {
       name: req.body.name,
       description: req.body.description,
       location: req.body.location,
-      poster: url
+      poster: url,
     },
     (err) => {
-			if (err) {
-				console.log(err);
-				next(err);
-			} else {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
         res.redirect("/promoters/events");
-			}
-		}
+      }
+    }
   );
 };
-//===================================
-//NEW ENDS
-//===================================
 
 //location
 adminController.createLocation = function (req, res) {
@@ -165,7 +166,7 @@ adminController.createLocation = function (req, res) {
     }
   });
 };
-//EDITAR 1 (FORM)
+//EDITAR 1 (FORM GET)
 //promoter
 adminController.editFormPromoter = function (req, res) {
   Promoter.findOne({ _id: req.params.id }).exec((err, dbitem) => {
@@ -212,46 +213,46 @@ adminController.editPromoter = function (req, res) {
   });
 };
 //event
-
-//===================================
-//NEW STARTS
-//===================================
 adminController.editEvent = function (req, res, next) {
-  if(typeof req.file !== 'undefined'){
-    const url = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
-    
-    Event.findByIdAndUpdate(req.body._id, {
-      name: req.body.name,
-      description: req.body.description,
-      poster: url
-    },
-    (err) => {
-      if (err) {
-        console.log(err);
-        next(err);
-      } else {
-        res.redirect("/promoters/events/show/" + req.body._id);
+  if (typeof req.file !== "undefined") {
+    const url =
+      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
+    //com poster
+    Event.findByIdAndUpdate(
+      req.body._id,
+      {
+        name: req.body.name,
+        description: req.body.description,
+        poster: url,
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+          next(err);
+        } else {
+          res.redirect("/promoters/events/show/" + req.body._id);
+        }
       }
-    });
+    );
+    //sem poster
   } else {
-    Event.findByIdAndUpdate(req.body._id, {
-      name: req.body.name,
-      description: req.body.description
-    },
-    (err) => {
-      if (err) {
-        console.log(err);
-        next(err);
-      } else {
-        res.redirect("/promoters/events/show/" + req.body._id);
+    Event.findByIdAndUpdate(
+      req.body._id,
+      {
+        name: req.body.name,
+        description: req.body.description,
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+          next(err);
+        } else {
+          res.redirect("/promoters/events/show/" + req.body._id);
+        }
       }
-    });
+    );
   }
 };
-//===================================
-//NEW STARTS
-//===================================
-
 //location
 adminController.editLocation = function (req, res) {
   Location.findByIdAndUpdate(req.body._id, req.body, (err, editedItem) => {
@@ -309,12 +310,6 @@ adminController.deleteLocation = async function (req, res) {
   }
 };
 
-//===================================
-//NEW STARTS
-//===================================
 adminController.uploadFile = (req, res, next) => {};
-//===================================
-//NEW ENDS
-//===================================
 
 module.exports = adminController;

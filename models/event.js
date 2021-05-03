@@ -11,6 +11,7 @@ var eventSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  //localização
   location: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Location",

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Create Event</title>
 </head>
+
 <body>
-    <form action="/admins/events/create" method="POST" enctype="multipart/form-data" > <!-- enctype IS NEW -->
+    <form action="/admins/events/create" method="POST" enctype="multipart/form-data">
         <div class="form_create">
             <label>Name: </label>
             <input name="name" id="name" type="text" placeholder="name" required>
@@ -20,33 +22,26 @@
         <div class="form_create">
             <label>Address: </label>
             <% if(items.length>0) { %>
-            <select id="place" name="location" required>
-                <option value="" selected disabled hidden>Selecione localização</option>
-                <% for(var i=0; i<items.length;i++) { %>
-                    <option value="<%= items[i]._id %>"><%= items[i].place %></option>
-                <% } %>
-            </select>
-            <% } else { %>
-                <div>No Locations found.</div>
-            <% } %>
+                <select id="place" name="location" required>
+                    <option value="" selected disabled hidden>Selecione localização</option>
+                    <% for(var i=0; i<items.length;i++) { %>
+                        <option value="<%= items[i]._id %>">
+                            <%= items[i].place %>
+                        </option>
+                        <% } %>
+                </select>
+                <% } else { %>
+                    <div>No Locations found.</div>
+                    <% } %>
         </div>
         <div class="form_create">
             <label>Poster: </label>
-            <!--
-            ===================================
-            NEW STARTS
-            ===================================
-            -->
             <input type="file" id="poster" name="poster">
-            <!--
-            ===================================
-            NEW ENDS
-            ===================================
-            -->
         </div>
         <div class="form_create">
             <button type="submit">Save</button>
         </div>
     </form>
 </body>
+
 </html>
